@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nocturne Notes</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Noto+Serif+Bengali:wght@100..900&display=swap"
+    rel="stylesheet">
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="images/NocturneLogo.svg" alt="Nocturne Notes logo">
+    </div>
+
+    <div class="category-filters">
+      <button class="category-btn" data-category="lucid">
+        <span class="dot dot-lucid"></span> Lucid
+      </button>
+      <button class="category-btn" data-category="good">
+        <span class="dot dot-good"></span> Good
+      </button>
+      <button class="category-btn" data-category="neutral">
+        <span class="dot dot-neutral"></span> Neutral
+      </button>
+      <button class="category-btn" data-category="nightmare">
+        <span class="dot dot-nightmare"></span> Nightmare
+      </button>
+    </div>
+  </header>
+
+  <main id="notesContainer" class="notes-grid"></main>
+
+  <dialog id="noteDialog">
+    <div class="dialog-content">
+      <form id="noteForm">
+        <div class="form-group title-row">
+          <input type="text" id="noteTitle" class="form-input" placeholder="Title" required>
+          <input type="date" id="noteDate" class="form-input form-date" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            Category
+          </label>
+          <div class="mood-picker">
+            <label class="mood-option">
+              <input type="checkbox" name="noteMood" value="lucid">
+              <span class="dot dot-lucid"></span> Lucid
+            </label>
+            <label class="mood-option">
+              <input type="checkbox" name="noteMood" value="good">
+              <span class="dot dot-good"></span> Good
+            </label>
+            <label class="mood-option">
+              <input type="checkbox" name="noteMood" value="neutral">
+              <span class="dot dot-neutral"></span> Neutral
+            </label>
+            <label class="mood-option">
+              <input type="checkbox" name="noteMood" value="nightmare">
+              <span class="dot dot-nightmare"></span> Nightmare
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="noteContent" class="form-label">Content</label>
+          <textarea id="noteContent" class="form-textarea" placeholder="Insert dream" required></textarea>
+        </div>
+
+        <div class="dialog-actions">
+          <button type="button" class="cancel-btn" onclick="closeNoteDialog()">Cancel</button>
+          <button type="submit" class="save-btn">Save Dream</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+</body>
+
+</html>

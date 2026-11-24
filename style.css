@@ -1,0 +1,436 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --header-bg: #1c0d47;
+  --body-bg: #2c3a6e;
+  --star-color: rgba(255, 255, 255, 0.05);
+  --cream: #fdf6d9;
+  --cream-text: #4a3210;
+  --lavender: #d6c6ff;
+  --lavender-deep: #2d2263;
+  --text-on-dark: #fdf6d9;
+
+  --dot-lucid: #6da6ff;
+  --dot-good: #f5a623;
+  --dot-neutral: #8bc34a;
+  --dot-nightmare: #c46bff;
+}
+
+body {
+  font-family: "Diphylleia", serif;
+  min-height: 100vh;
+  background-color: var(--body-bg);
+  color: var(--text-on-dark);
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--star-color) 0 2px, transparent 3px),
+    radial-gradient(circle at 0% 0%, var(--star-color) 0 1px, transparent 2px),
+    radial-gradient(circle at 100% 100%, var(--star-color) 0 1px, transparent 2px);
+  background-size: 120px 120px;
+  background-position: 0 0, 60px 60px, 60px 60px;
+}
+
+button,
+input,
+textarea {
+  font-family: "Diphylleia", serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--header-bg);
+  padding: 1.25rem 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand h1 {
+  font-family: "Noto Serif Bengali", serif;
+}
+
+.category-filters {
+  font-family: "Diphylleia", serif;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  font-family: "Diphylleia", serif;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--cream);
+  border: 1.5px solid rgba(253, 246, 217, 0.55);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background: rgba(253, 246, 217, 0.12);
+  border-color: var(--cream);
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.dot-lucid {
+  background: var(--dot-lucid);
+}
+
+.dot-good {
+  background: var(--dot-good);
+}
+
+.dot-neutral {
+  background: var(--dot-neutral);
+}
+
+.dot-nightmare {
+  background: var(--dot-nightmare);
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.75rem;
+  padding: 3rem 2.5rem;
+  align-items: start;
+}
+
+.add-dream-card {
+  font-family: "Noto Serif Bengali", serif;
+  background: var(--lavender);
+  color: var(--lavender-deep);
+  border: none;
+  border-radius: 1rem;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.6rem;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease;
+}
+
+.add-dream-card:hover {
+  transform: translateY(-2px);
+}
+
+.add-dream-card .plus {
+  font-size: 2.75rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.note-card {
+  background: var(--cream);
+  color: var(--cream-text);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.note-title {
+  font-family: "Noto Serif Bengali", serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+}
+
+.note-date {
+  font-size: 0.8rem;
+  color: #8a7440;
+  margin-bottom: 0.6rem;
+}
+
+.note-content {
+  font-family: "Diphylleia", serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #6b5320;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.note-dots {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.note-dots .dot {
+  width: 20px;
+  height: 20px;
+}
+
+.note-actions {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 0.4rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.note-card:hover .note-actions {
+  opacity: 1;
+  visibility: visible;
+}
+
+.edit-btn,
+.delete-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--cream-text);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.edit-btn:hover {
+  background: #fff;
+  transform: scale(1.06);
+}
+
+.delete-btn:hover {
+  background: #ff5252;
+  color: #fff;
+  transform: scale(1.06);
+}
+
+dialog {
+  margin: auto;
+  inset: 0;
+  border: none;
+  border-radius: 1rem;
+  padding: 0;
+  background: var(--cream);
+  color: var(--cream-text);
+  max-width: 520px;
+  width: 90vw;
+}
+
+dialog::backdrop {
+  background: rgba(10, 5, 30, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.dialog-content {
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  font-family: "Noto Serif Bengali", serif;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--cream-text);
+}
+
+.title-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.title-row .form-input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.form-date {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 160px;
+}
+
+.note-date {
+  font-size: 0.8rem;
+  color: #8a7440;
+  margin-bottom: 0.4rem;
+}
+
+@media (max-width: 480px) {
+  .title-row {
+    flex-direction: column;
+  }
+
+  .form-date {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e8dbaa;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: #fffdf3;
+  color: var(--cream-text);
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #c9a83a;
+}
+
+.form-textarea {
+  font-family: "Diphylleia", serif;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.mood-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.mood-option {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1.5px solid #e8dbaa;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.mood-option input {
+  display: none;
+}
+
+.mood-option:hover {
+  background: rgba(201, 168, 58, 0.08);
+}
+
+.mood-option:has(input:checked) {
+  background: rgba(201, 168, 58, 0.18);
+  border-color: #c9a83a;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.cancel-btn {
+  font-family: "Noto Serif Bengali", serif;
+  background: #efe4b8;
+  color: var(--cream-text);
+}
+
+.cancel-btn:hover {
+  background: #e5d79f;
+}
+
+.save-btn {
+  font-family: "Noto Serif Bengali", serif;
+  background: var(--lavender-deep);
+  color: white;
+}
+
+.save-btn:hover {
+  background: #3a2c7d;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--cream);
+  opacity: 0.85;
+}
+
+.empty-state h2 {
+  font-family: "Noto Serif Bengali", serif;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  header {
+    padding: 1rem 1.25rem;
+  }
+
+  .brand h1 {
+    font-size: 1.5rem;
+  }
+
+  .notes-grid {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-row {
+    flex-direction: column;
+  }
+
+  .form-date {
+    width: 100%;
+    min-width: 0;
+  }
+}
